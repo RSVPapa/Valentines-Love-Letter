@@ -1,0 +1,200 @@
+/* Import Romantic & Formal Font: Playfair Display */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --bg: #1a0f1f; 
+  --tab-bg: #fffcf9;
+  --f-color: #7b4b94; 
+  --s-color: #4b2c5e; 
+  --t-color: #663d7a; 
+  --fo-color: #f9f9f9;
+  --fi-color: #e2e2e2;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg);
+  font-family: 'Playfair Display', serif; /* Updated Font */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Floating Animation for the whole Envelope */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.envelop {
+  width: 15rem;
+  height: 10rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation: float 3s ease-in-out infinite;
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+  .envelop { width: 20rem; height: 15rem; }
+}
+
+@media (min-width: 600px) {
+  .envelop { width: 25rem; height: 20rem; }
+}
+
+/* Shimmering Sparkle Effect */
+@keyframes shimmer {
+  0% { left: -150%; }
+  100% { left: 150%; }
+}
+
+.envelop__front-paper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  border-radius: 0.7rem;
+  border: 0.35rem solid var(--s-color);
+  background-color: var(--f-color);
+  clip-path: polygon(100% 0%, 50% 70%, 0% 0%, 0% 100%, 100% 100%);
+  z-index: 300;
+  overflow: hidden;
+}
+
+/* The Shine Layer */
+.envelop__front-paper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 4s infinite;
+}
+
+.envelop__back-paper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  border-radius: 0.7rem;
+  background-color: var(--s-color);
+  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 90%);
+  z-index: 100;
+}
+
+.envelop__up-paper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  border-radius: 0.7rem;
+  background-color: var(--s-color);
+  z-index: 400;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 81%);
+}
+
+/* Pulsing Heartbeat Sticker */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.envelop__sticker {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  position: absolute;
+  margin: auto;
+  top: 35%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 400;
+  background-image: url("https://www.freepnglogos.com/uploads/heart-png/emoji-heart-33.png");
+  background-color: var(--fo-color);
+  border: 0.2rem solid var(--fi-color);
+  background-size: 1.5rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: heartbeat 2s infinite;
+}
+
+.envelop__content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 200;
+}
+
+.love-notes {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note {
+  width: 90%;
+  height: 40%;
+  background-color: var(--tab-bg);
+  position: absolute;
+  overflow: hidden;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  padding: 20px; 
+  z-index: 1;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.note.active {
+  overflow-y: auto;
+  z-index: 10;
+  height: 85%;
+  bottom: 15% !important; 
+}
+
+.note:nth-child(1) { bottom: 30%; }
+.note:nth-child(2) { bottom: 20%; }
+.note:nth-child(3) { bottom: 10%; }
+
+.note:hover {
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.note__text {
+  font-family: 'Playfair Display', serif; /* Updated Font */
+  color: #4b2c5e;
+  padding-bottom: 15rem;
+  text-align: left; /* Left align is much easier to read for standard fonts */
+}
+
+.note__text p {
+  font-size: 1.05rem; /* Slightly smaller size, serif fonts look bigger than cursive */
+  line-height: 1.6; /* Increased line-height for elegant spacing */
+  margin-bottom: 15px;
+}
+
+.scissors {
+  cursor: url("https://i.postimg.cc/GtLCdKxR/sisors.png"), pointer;
+}
